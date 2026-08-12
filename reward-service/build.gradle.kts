@@ -36,6 +36,9 @@ dependencies {
     // nats(spring)
     implementation("io.nats:nats-spring:0.6.2+3.5")
 
+    // kotlin logging
+    implementation("io.github.oshai:kotlin-logging-jvm:8.0.01")
+
     // test
     testImplementation("org.springframework.boot:spring-boot-starter-data-jdbc-test")
     testImplementation("org.springframework.boot:spring-boot-starter-kafka-test")
