@@ -9,8 +9,8 @@ private val log = KotlinLogging.logger {}
 
 interface NatsMessageHandler: MessageHandler {
     val streamName: String
-    val subjectName: String
     val durableName: String
+    val subjectName: String
 
     override fun onMessage(msg: Message) {
         val traceId = msg.headers?.getFirst("traceId") ?: run {

@@ -34,5 +34,6 @@ class EventRewardHandler : NatsMessageHandler {
     override fun handle(msg: Message) {
         val data = String(msg.data, Charsets.UTF_8)
         println(data)
+        println("Reward Event")
     }
 }
