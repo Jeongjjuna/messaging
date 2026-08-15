@@ -1,8 +1,11 @@
 package yjh.ontongsal.rewardservice.presentation
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.nats.client.Message
 import org.springframework.stereotype.Component
 import yjh.ontongsal.rewardservice.nats.NatsMessageHandler
+
+private val log = KotlinLogging.logger {}
 
 @Component
 class EventAlarmHandler: NatsMessageHandler {
@@ -16,7 +19,6 @@ class EventAlarmHandler: NatsMessageHandler {
 
     override fun handle(msg: Message) {
         val data = String(msg.data, Charsets.UTF_8)
-        println(data)
-        println("Alarm Event")
+        log.info { "NATS message received subject=$subjectName data=$data" }
     }
 }

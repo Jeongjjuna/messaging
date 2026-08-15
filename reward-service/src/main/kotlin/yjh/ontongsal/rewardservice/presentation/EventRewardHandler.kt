@@ -1,5 +1,6 @@
 package yjh.ontongsal.rewardservice.presentation
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.nats.client.Message
 import org.springframework.stereotype.Component
 import yjh.ontongsal.rewardservice.nats.NatsMessageHandler
@@ -21,6 +22,8 @@ import yjh.ontongsal.rewardservice.nats.NatsMessageHandler
  * 따라서 handle()에서는 별도로 try-catch를 사용하거나 ack()를 호출하지 않아도 됩니다.
  * 비즈니스 로직에서 예외가 발생하면 ACK되지 않고, NATS가 메시지를 다시 전달합니다.
  */
+private val log = KotlinLogging.logger {}
+
 @Component
 class EventRewardHandler : NatsMessageHandler {
 
@@ -33,7 +36,6 @@ class EventRewardHandler : NatsMessageHandler {
 
     override fun handle(msg: Message) {
         val data = String(msg.data, Charsets.UTF_8)
-        println(data)
-        println("Reward Event")
+        log.info { "NATS message received subject=$subjectName data=$data" }
     }
 }
